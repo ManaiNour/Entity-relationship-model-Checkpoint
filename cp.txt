@@ -1,0 +1,83 @@
+Entities:
+
+-Gymnasium:
+Name (unique identifier)
+Address
+Telephone number
+
+-Member:
+Member ID (unique identifier)
+Last name
+First name
+Address
+Date of birth
+Gender
+
+-Session:
+Session ID (unique identifier)
+Type of sport
+Schedule
+Maximum capacity (20 members)
+
+-Coach:
+Coach ID (unique identifier)
+Last name
+First name
+Age
+Specialty
+
+
+
+Relationships:
+
+-Registration:
+Connects Member and Session entities
+Member can register for multiple sessions, and each session can have multiple members.
+
+-Conducts:
+Connects Coach and Session entities
+A session can be conducted by one or two coaches, and a coach can conduct multiple sessions.
+
+Here's a basic representation of the ERM using Crow's Foot notation:
+
+
+__________________              __________________           ____________________
+| Gymnasium      |            | Session        |         | Coach            |
+|----------------|            |----------------|         |------------------|
+| Name (PK)      |1----------M| Session ID (PK)|         | Coach ID (PK)    |
+| Address        |            | Type of sport  |         | Last name        |
+| Telephone      |            | Schedule       |         | First name       |
+|________________|            | Max capacity   |         | Age              |
+                              |________________|         | Specialty        |
+                                  |      ^                |__________________|
+                                  |      |
+                                  |      | 1------M
+                                  |      |
+                                  |      |
+__________________                |      |
+| Member         |                | Registration|
+|----------------|                |-------------|
+| Member ID (PK) |1--------------M| Member ID (FK)|
+| Last name      |                | Session ID (FK)|
+| First name     |                |______________|
+| Address        |
+| Date of birth  |
+| Gender         |
+|________________|
+
+In this model:
+
+PK indicates Primary Key.
+FK indicates Foreign Key.
+The relationships are shown using the Crow's Foot notation:
+
+1 to M (one to many) relationship between Gymnasium and Session (a gymnasium can have multiple sessions, but each session is associated with one gymnasium).
+1 to M relationship between Session and Coach (a session can have one or two coaches, but each coach can conduct multiple sessions).
+1 to M relationship between Member and Registration (a member can register for multiple sessions, but each registration is for one member).
+M to 1 relationship between Session and Registration (each session can have multiple registrations, but each registration is for one session).
+
+This ERM provides a basic structure for managing gymnasiums, members, sessions, and coaches in a relational database system.
+
+
+
+
